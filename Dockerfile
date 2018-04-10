@@ -21,7 +21,6 @@ ARG version="0.10.12"
 LABEL caddy_version="$version"
 
 # Let's Encrypt Agreement
-ENV ACME_AGREE="false"
 
 RUN apk add --no-cache openssh-client git
 
@@ -43,5 +42,7 @@ COPY index.html /srv/index.html
 COPY --from=builder /go/bin/parent /bin/parent
 
 ENTRYPOINT ["/bin/parent", "caddy"]
-CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "--agree=$ACME_AGREE"]
+RUN test -z "$ACME_AGREE" || \
+  CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "-agree"] && \
+  CMD ["--conf", "/etc/Caddyfile", "--log", "stdout"] && \
 
