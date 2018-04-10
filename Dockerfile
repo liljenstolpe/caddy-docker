@@ -15,7 +15,7 @@ RUN VERSION=${version} PLUGINS=${plugins} /bin/sh /usr/bin/builder.sh
 # Final stage
 #
 FROM alpine:3.7
-LABEL maintainer "Abiola Ibrahim <abiola89@gmail.com>"
+LABEL maintainer "Christopher LILJENSTOLPE <cdl@asgaard.org>"
 
 ARG version="0.10.12"
 LABEL caddy_version="$version"
