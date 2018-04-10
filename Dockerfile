@@ -44,5 +44,5 @@ COPY --from=builder /go/bin/parent /bin/parent
 ENTRYPOINT ["/bin/parent", "caddy"]
 RUN test -z "$ACME_AGREE" || \
   CMD ["--conf", "/etc/Caddyfile", "--log", "stdout", "-agree"] && \
-  CMD ["--conf", "/etc/Caddyfile", "--log", "stdout"] && \
+  CMD ["--conf", "/etc/Caddyfile", "--log", "stdout"]
 
